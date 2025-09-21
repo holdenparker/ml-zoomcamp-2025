@@ -1,0 +1,14 @@
+name: hparker-ml-zoomcamp-2025
+
+services:
+  homework:
+    image: hparker-ml-zoomcamp-2025/homework
+    build:
+      context: ../homework
+      dockerfile: ../docker/Dockerfile.jupyter
+      target: homework
+    volumes:
+      - ../homework:/home/hparker/homework
+    ports:
+      - 6592:8888
+

@@ -1,0 +1,16 @@
+FROM quay.io/jupyter/base-notebook:2025-09-19 AS jupyter-base
+
+# Setup password authentication so we don't have to remember tokens (password: "jupyter")
+RUN echo "{ \"PasswordIdentityProvider\": { \"hashed_password\": \"sha1:ad16e87de314:a02efac10ccd7ead24e845f438b2b87fe8bc2d0f\" } }" >> ~/.jupyter/jupyter_notebook_config.json
+
+# Setup VI tooling
+RUN mkdir -p ~/.ipython/profile_default
+RUN echo "c.TerminalInteractiveShell.editing_mode = 'vi'" >> ~/.ipython/profile_default/ipython_config.py
+
+FROM jupyter-base AS homework
+
+WORKDIR /home/hparker/homework
+
+COPY ./requirements.txt /home/hparker/homework/
+
+RUN pip install -r requirements.txt
