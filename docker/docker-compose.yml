@@ -11,4 +11,11 @@ services:
       - ../homework:/home/hparker/homework
     ports:
       - 6592:8888
+  hw05:
+    image: hparker-ml-zoomcamp-2025/homework-05
+    build:
+      context: ../homework/05
+      dockerfile: ../../docker/Dockerfile.hw05
+    ports:
+      - 9696:9696
 

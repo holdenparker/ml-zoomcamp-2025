@@ -1,0 +1,11 @@
+FROM agrigorev/zoomcamp-model:2025
+
+COPY ./ /home/hparker/homework/05
+
+RUN pip install uv
+
+WORKDIR /home/hparker/homework/05
+
+RUN uv sync
+
+CMD [ "uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "9696", "--reload" ]
