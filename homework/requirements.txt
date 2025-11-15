@@ -4,3 +4,4 @@ scikit-learn==1.7.2
 matplotlib==3.10.6
 seaborn==0.13.2
 uv==0.9.5
+xgboost==3.1.0
