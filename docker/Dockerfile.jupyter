@@ -18,3 +18,11 @@ WORKDIR /home/hparker/homework
 COPY ./requirements.txt /home/hparker/homework/
 
 RUN pip install -r requirements.txt
+
+FROM jupyter-base as midterm
+
+WORKDIR /home/hparker/midterm
+
+COPY ./requirements.txt /home/hparker/midterm/
+
+RUN pip install -r requirements.txt

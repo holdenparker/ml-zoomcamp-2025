@@ -1,0 +1,13 @@
+FROM python:3.13.9-slim as midterm
+
+COPY ./ /home/hparker/midterm
+
+WORKDIR /home/hparker/midterm
+
+RUN pip install -r requirements.txt
+
+RUN uv sync
+
+RUN python train.py
+
+CMD [ "uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "9696", "--reload" ]

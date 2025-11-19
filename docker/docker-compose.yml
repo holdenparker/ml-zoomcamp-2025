@@ -18,4 +18,23 @@ services:
       dockerfile: ../../docker/Dockerfile.hw05
     ports:
       - 9696:9696
+  midterm:
+    image: hparker-ml-zoomcamp-2025/midterm
+    build:
+      context: ../midterm
+      dockerfile: ../docker/Dockerfile.jupyter
+      target: midterm
+    volumes:
+      - ../midterm:/home/hparker/midterm
+    depends_on:
+      - midterm-service
+    ports:
+      - 6593:8888
+  midterm-service:
+    image: hparker-ml-zoomcamp-2025/midterm-service
+    build:
+      context: ../midterm
+      dockerfile: ../docker/Dockerfile.midterm
+    ports:
+      - 9696:9696
 
