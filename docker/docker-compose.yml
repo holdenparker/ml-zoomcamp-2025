@@ -44,6 +44,6 @@ services:
       dockerfile: ../docker/Dockerfile.jupyter
       target: capstone
     volumes:
-      - ../midterm:/home/hparker/midterm
+      - ../capstone:/home/hparker/capstone
     ports:
       - 6594:8888
