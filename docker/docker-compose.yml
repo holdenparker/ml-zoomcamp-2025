@@ -37,4 +37,13 @@ services:
       dockerfile: ../docker/Dockerfile.midterm
     ports:
       - 9696:9696
-
+  capstone:
+    image: hparker-ml-zoomcamp-2025/capstone
+    build:
+      context: ../capstone
+      dockerfile: ../docker/Dockerfile.jupyter
+      target: capstone
+    volumes:
+      - ../midterm:/home/hparker/midterm
+    ports:
+      - 6594:8888

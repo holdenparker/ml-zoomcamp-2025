@@ -26,3 +26,11 @@ WORKDIR /home/hparker/midterm
 COPY ./requirements.txt /home/hparker/midterm/
 
 RUN pip install -r requirements.txt
+
+FROM jupyter-base as capstone
+
+WORKDIR /home/hparker/capstone
+
+COPY ./requirements.txt /home/hparker/capstone/
+
+RUN pip install -r requirements.txt
