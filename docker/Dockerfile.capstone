@@ -17,6 +17,10 @@ CMD ["python", "train.py"]
 
 FROM capstone AS capstone-service
 
+COPY ./main.py /home/hparker/capstone/
+COPY ./capstone_model.keras /home/hparker/capstone/
+COPY ./classes.json /home/hparker/capstone/
+
 EXPOSE 9697
 
 CMD [ "uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "9697", "--reload" ]

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hparker-ml-zoomcamp-2025-capstone
+spec:
+  type: LoadBalancer
+  selector:
+    app: hparker-ml-zoomcamp-2025-capstone
+  ports:
+  - port: 9697
+    targetPort: 9697

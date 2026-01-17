@@ -34,6 +34,10 @@ async def predict(file: UploadFile = File(...)):
         ]
     }
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
 def main():
     print("Hello from capstone!")
     uvicorn.run(app, host="0.0.0.0", port=9697)

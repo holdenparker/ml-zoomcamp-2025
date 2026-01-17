@@ -62,7 +62,23 @@ services:
       context: ../capstone
       dockerfile: ../docker/Dockerfile.capstone
       target: capstone-service
-    volumes:
-      - ../capstone:/home/hparker/capstone
     ports:
-      - 9697:9697
+      - 9698:9697
+  capstone-k8s-apply:
+    image: alpine/kubectl
+    volumes:
+      - ~/.kube/config:/root/.kube/config:ro
+      - ../kubernetes/capstone:/capstone/k8s-manifests:ro
+    environment:
+      - KUBECONFIG=/root/.kube/config
+    # The container already supplies the `kubectl` portion of the command
+    command: ["apply", "-f", "/capstone/k8s-manifests/"]
+  capstone-k8s-delete:
+    image: alpine/kubectl
+    volumes:
+      - ~/.kube/config:/root/.kube/config:ro
+      - ../kubernetes/capstone:/capstone/k8s-manifests:ro
+    environment:
+      - KUBECONFIG=/root/.kube/config
+    # The container already supplies the `kubectl` portion of the command
+    command: ["delete", "-f", "/capstone/k8s-manifests/"]
