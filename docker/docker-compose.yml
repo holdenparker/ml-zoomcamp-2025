@@ -47,3 +47,22 @@ services:
       - ../capstone:/home/hparker/capstone
     ports:
       - 6594:8888
+  capstone-train:
+    image: hparker-ml-zoomcamp-2025/capstone-train
+    build:
+      context: ../capstone
+      dockerfile: ../docker/Dockerfile.capstone
+      target: capstone-train
+    tty: true
+    volumes:
+      - ../capstone:/home/hparker/capstone
+  capstone-service:
+    image: hparker-ml-zoomcamp-2025/capstone-service
+    build:
+      context: ../capstone
+      dockerfile: ../docker/Dockerfile.capstone
+      target: capstone-service
+    volumes:
+      - ../capstone:/home/hparker/capstone
+    ports:
+      - 9697:9697

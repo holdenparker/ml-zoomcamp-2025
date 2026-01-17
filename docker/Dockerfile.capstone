@@ -1,0 +1,22 @@
+FROM python:3.13.9-slim as capstone
+
+COPY ./.python-version /home/hparker/capstone/
+COPY ./pyproject.toml /home/hparker/capstone/
+COPY ./requirements.txt /home/hparker/capstone/
+COPY ./uv.lock /home/hparker/capstone/
+
+WORKDIR /home/hparker/capstone
+
+RUN pip install -r requirements.txt
+
+RUN uv sync
+
+FROM capstone AS capstone-train
+
+CMD ["python", "train.py"]
+
+FROM capstone AS capstone-service
+
+EXPOSE 9697
+
+CMD [ "uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "9697", "--reload" ]
