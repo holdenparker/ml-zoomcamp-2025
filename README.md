@@ -8,6 +8,15 @@ To ignore my guidance and fly blindly into the unknown, you can run the followin
 docker compose -f docker/docker-compose.yml up -d midterm
 ```
 
+## Running capstone code
+For full details, please review the [Capstone README](./capstone/README.md).
+To ignore my guidance and fly blindly into the unknown, you can run the following command:
+```sh
+docker compose -f docker/docker-compose.yml up -d capstone
+docker compose -f docker/docker-compose.yml up -d capstone-service
+curl -v -X POST http://localhost:9698/predict -F "file=@capstone/data/test/football/4.jpg"
+```
+
 ## Running homework code
 This course utilizes Jupyter notebooks.
 I like running things on my local machine, so I set things up to run within docker.
